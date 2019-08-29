@@ -9,6 +9,10 @@ const IdeaSchema = new Schema({
         type: Boolean,
         required: false
     },
+    date: {
+        type: Date,
+        required: true
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
