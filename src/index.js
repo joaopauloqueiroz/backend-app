@@ -12,6 +12,6 @@ app.use(cors())
 app.use(bodyParser())
 app.use(routes)
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log(`Server is runing on ${port}`)
 })
