@@ -1,12 +1,12 @@
 const axios = require('axios')
-const bcrypt = require('bcrypt');
+const bcrypt = require('password-hash');
 const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const authConfig = require("../config/auth.json");
 
 module.exports = {
     async store(req, res) {
-        const hash = bcrypt.hashSync(req.body.password, 10);
+        const hash = bcrypt.generate(req.body.password);
         const { name, username, password } = req.body
         let userExists = await User.findOne({ username: username })
         if(userExists){
@@ -36,7 +36,7 @@ module.exports = {
           //verificar se a senha e realmente do email
           //await por que demora então ela não e async por isso precisa
           //bcrypt.compare() por que a senha foi criptografada então tem que comparar com a cript.
-          if (!(await bcrypt.compare(password, user.password)))
+          if (!(await bcrypt.verify(password, user.password)))
             return res.status(400).send({ error: "Password is not valid!" })
         
           //remover o password para não retornar para o usuario
