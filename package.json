@@ -4,6 +4,7 @@
   "description": "Backend to app ideas",
   "main": "index.js",
   "scripts": {
+    "rebuild": "npm rebuild",
     "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
