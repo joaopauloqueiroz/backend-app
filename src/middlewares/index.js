@@ -1,6 +1,6 @@
 //importar o jwt
 const jwt = require("jsonwebtoken");
-const authConfig = require("../config");
+const authConfig = require("../config/auth.json");
 
 // o middleware recebe trz parametros
 module.exports = (req, res, next) => {

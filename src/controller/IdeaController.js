@@ -18,7 +18,6 @@ module.exports = {
     },
     async index(req, res) {
         const { id } = req.params
-        console.log(id)
         try {
             const ideas = await Idea.find({
                 "user": id
@@ -30,7 +29,17 @@ module.exports = {
     },
     async destroy(req, res) {
         const { _id } = req.params
-        const idea = await Idea.findByIdAndDelete({ _id })
+        const idea = await Idea.findOneAndDelete({ _id })
         return res.status(200).send({ deleted: 'success' })
+    },
+    async edit(req, res) {
+        
+        delete req.body.createdAt
+        delete req.body.updatedAt
+        const { _id } = req.body
+        delete req.body._id
+        console.log(req.body._id)
+       const idea = await Idea.updateOne({_id: _id}, req.body)
+       res.status(201).send({updated: 'success'})
     }
 }

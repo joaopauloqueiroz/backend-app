@@ -41,7 +41,7 @@ module.exports = {
         
           //remover o password para não retornar para o usuario
           user.password = undefined
-        
+        console.log(user)
           //retorna essa informação para o usuario
           res.send({
             user,
