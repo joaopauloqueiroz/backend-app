@@ -14,7 +14,7 @@
    cd src & npm start
 </p>
 
-## Dependences
+## Dependencies
    [Nodejs](https://nodejs.org/en/)
    <br />
    [Express](https://expressjs.com/pt-br/)
