@@ -6,10 +6,10 @@
 
 ## Dependences
 <p>
-Nodejs
-Express
-Mongoose
+   [Nodejs] (https://nodejs.org/en/) 
+   [Express] (https://expressjs.com/pt-br/)
+   [Mongoose] (https://mongoosejs.com/)
 </p>
 
 ## License
-## MIT
+## [MIT] (https://github.com/diego3g/react-vimeo/blob/master/LICENSE.md)
