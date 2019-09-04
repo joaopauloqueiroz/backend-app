@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous"
+    />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <script>
+    var arr = [];
+    function add(e) {
+      let valor = document.getElementById("1").value;
+      if (valor < 0 || valor > 25) {
+        alert("Numero inserido não e valido");
+        document.getElementById("1").value = "";
+        return false;
+      }
+      if (valor) {
+        let el = document.getElementById("row");
+        let div = document.createElement("div");
+        div.className = "form-group col-md-2";
+
+        let item = document.createElement("input");
+        item.className = "form-control";
+        item.value = valor;
+        item.ondblclick = () => removeItem();
+        item.contentEditable = false;
+        if (arr.length === 9) {
+          document.getElementById("1").value = "";
+          document.getElementById("1").disable = true;
+          document.getElementById("gerar").style.display = "block";
+          document.getElementById("add").style.display = "hidden";
+          return false;
+        } else {
+          arr.push(valor);
+        }
+        div.appendChild(item);
+        el.append(div);
+        document.getElementById("1").value = "";
+      } else {
+        alert("Preencha o campo com numero");
+      }
+    }
+    function removeItem(el) {
+      console.log(arr);
+    }
+
+    function gerar() {
+      console.log(arr);
+    }
+  </script>
+  <body>
+    <div class="container">
+      <div class="md-12 xs-12 sm-12">
+        <h2>GENERATE NUMBERS LOTO</h2>
+      </div>
+      <div class="row col-md-8" id="row">
+        <div class="form-group col-md-2" id="items">
+          <input
+            type="number"
+            name="number1"
+            id="1"
+            class="form-control"
+            placeholder="add"
+            min="0"
+            max="25"
+          />
+        </div>
+      </div>
+      <div class="text-left fullwidth col-md-12">
+        <button class="btn btn-primary" onclick="add()" id="add">
+          ADICIONAR
+        </button>
+        <button
+          class="btn btn-primary"
+          onclick="gerar()"
+          id="gerar"
+          style="display: none;"
+        >
+          GERAR
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

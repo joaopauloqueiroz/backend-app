@@ -7,7 +7,7 @@ const authConfig = require("../config/auth.json");
 module.exports = {
     async store(req, res) {
         const hash = bcrypt.generate(req.body.password);
-        const { name, username, password } = req.body
+        const { name, username } = req.body
         let userExists = await User.findOne({ username: username })
         if(userExists){
            return res.status(400).send({error: 'User exist'})
