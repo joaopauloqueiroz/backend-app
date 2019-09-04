@@ -16,6 +16,7 @@ app.use(bodyParser());
 app.use(routes);
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Server is runing on ${port}`);
