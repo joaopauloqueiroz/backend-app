@@ -30,46 +30,103 @@
   </head>
   <script>
     var arr = [];
-    function add(e) {
+    var arrayNumbers = [];
+    for (let x=1;x<26;x++){
+      arrayNumbers.push(x);
+    }
+
+    Element.prototype.remove = function() {
+        this.parentElement.removeChild(this);
+    }
+    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+        for(var i = this.length - 1; i >= 0; i--) {
+            if(this[i] && this[i].parentElement) {
+                this[i].parentElement.removeChild(this[i]);
+            }
+        }
+    }
+
+    function gerar(){
+      let newArray = arrayNumbers.filter( ( el ) => !arr.includes( el ) );
+      let values = [];
+
+      for (let x=0;x<6;x++){
+        let random = Math.floor((Math.random() * newArray.length-1) + 1);
+        values.push(newArray[random]);
+        newArray.splice(random, 1);
+      }
+
+      values.sort();
+      document.getElementById('generated').value = values;
+    }
+
+    function removeItem(id){
+      let valueToRemove = document.getElementById('i'+id).value;
+      document.getElementById('i'+id).remove();
+      document.getElementById('div'+id).remove();
+      for (let x=0;x<arr.length;x++){
+        if (valueToRemove == arr[x]){
+          arr.splice(x, 1);
+          break;
+        }
+      }
+      
+      if (arr.length === 8){
+        document.getElementById("1").value = "";
+        document.getElementById("1").disable = false;
+        document.getElementById("generated").value = "";
+        document.getElementById("gerar").style.display = "none";
+        document.getElementById("add").style.display = "block";
+        document.getElementById("1").style.display = "block";
+        document.getElementById("generated").style.display = "none";
+      }
+    }
+
+    function add(e){
       let valor = document.getElementById("1").value;
-      if (valor < 0 || valor > 25) {
+      if (valor <= 0 || valor > 25){
         alert("Numero inserido não e valido");
         document.getElementById("1").value = "";
         return false;
       }
-      if (valor) {
+
+      for(let i=0;i<arr.length;i++) {
+        if(arr[i] == valor) {
+          alert("Este número já foi adicionado");
+          return false;
+        }
+      }
+
+      if (valor){
         let el = document.getElementById("row");
         let div = document.createElement("div");
         div.className = "form-group col-md-2";
+        div.id = 'div'+valor;
 
         let item = document.createElement("input");
         item.className = "form-control";
+        item.id = 'i'+valor
         item.value = valor;
-        item.ondblclick = () => removeItem();
+        item.ondblclick = () => removeItem(valor);
         item.contentEditable = false;
-        if (arr.length === 9) {
+        if (arr.length === 8){
           document.getElementById("1").value = "";
           document.getElementById("1").disable = true;
           document.getElementById("gerar").style.display = "block";
-          document.getElementById("add").style.display = "hidden";
-          return false;
-        } else {
-          arr.push(valor);
-        }
+          document.getElementById("add").style.display = "none";
+          document.getElementById("1").style.display = "none";
+          document.getElementById("generated").style.display = "block";
+        } 
+        arr.push(parseInt(valor, 10));
         div.appendChild(item);
         el.append(div);
         document.getElementById("1").value = "";
-      } else {
+      } 
+      else{
         alert("Preencha o campo com numero");
       }
     }
-    function removeItem(el) {
-      console.log(arr);
-    }
 
-    function gerar() {
-      console.log(arr);
-    }
   </script>
   <body>
     <div class="container">
@@ -97,11 +154,11 @@
           class="btn btn-primary"
           onclick="gerar()"
           id="gerar"
-          style="display: none;"
-        >
+          style="display: none;">
           GERAR
         </button>
       </div>
+      <textarea id='generated' style="display: none;"></textarea>
     </div>
   </body>
 </html>
