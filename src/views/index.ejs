@@ -70,19 +70,21 @@
           break;
         }
       }
-      console.log(arr.length);
+      
       if (arr.length === 8){
         document.getElementById("1").value = "";
         document.getElementById("1").disable = false;
+        document.getElementById("generated").value = "";
         document.getElementById("gerar").style.display = "none";
         document.getElementById("add").style.display = "block";
         document.getElementById("1").style.display = "block";
+        document.getElementById("generated").style.display = "none";
       }
     }
 
     function add(e){
       let valor = document.getElementById("1").value;
-      if (valor < 0 || valor > 25){
+      if (valor <= 0 || valor > 25){
         alert("Numero inserido não e valido");
         document.getElementById("1").value = "";
         return false;
@@ -113,6 +115,7 @@
           document.getElementById("gerar").style.display = "block";
           document.getElementById("add").style.display = "none";
           document.getElementById("1").style.display = "none";
+          document.getElementById("generated").style.display = "block";
         } 
         arr.push(parseInt(valor, 10));
         div.appendChild(item);
@@ -155,7 +158,7 @@
           GERAR
         </button>
       </div>
-      <textarea id='generated'></textarea>
+      <textarea id='generated' style="display: none;"></textarea>
     </div>
   </body>
 </html>
