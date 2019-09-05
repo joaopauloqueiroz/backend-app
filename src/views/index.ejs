@@ -47,17 +47,34 @@
     }
 
     function gerar(){
-      let newArray = arrayNumbers.filter( ( el ) => !arr.includes( el ) );
-      let values = [];
+      let totalGames = [];
+      let array = arrayNumbers.filter( ( el ) => !arr.includes( el ) );
 
-      for (let x=0;x<6;x++){
-        let random = Math.floor((Math.random() * newArray.length-1) + 1);
-        values.push(newArray[random]);
-        newArray.splice(random, 1);
+      let cont = 0;
+      while (totalGames.length<25){
+        let newArray = array.slice();
+        let values = [];
+        for (let x=0;x<6;x++){
+          let random = Math.floor((Math.random() * newArray.length-1) + 1);
+          values.push(newArray[random]);
+          newArray.splice(random, 1);
+        }
+
+        let verify = true;
+        values.sort();
+        for (let x=0;x<totalGames.length;x++){
+          if (totalGames[x]===values){
+            verify = false;
+            break;
+          }
+        }
+
+        if (verify){
+          totalGames.push(values);
+        }
       }
 
-      values.sort();
-      document.getElementById('generated').value = values;
+      document.getElementById('generated').value = totalGames;
     }
 
     function removeItem(id){
