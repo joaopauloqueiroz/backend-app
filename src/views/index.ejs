@@ -30,6 +30,85 @@
   </head>
   <script>
     var arr = [];
+    var arrayNumbers = [];
+    for (let x = 1; x < 26; x++) {
+      arrayNumbers.push(x);
+    }
+
+    Element.prototype.remove = function() {
+      this.parentElement.removeChild(this);
+    };
+    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+      for (var i = this.length - 1; i >= 0; i--) {
+        if (this[i] && this[i].parentElement) {
+          this[i].parentElement.removeChild(this[i]);
+        }
+      }
+    };
+
+    function gerar() {
+      var totalGames = [];
+      let array = arrayNumbers.filter(el => !arr.includes(el));
+
+      let cont = 0;
+      while (totalGames.length < 25) {
+        let newArray = array.slice();
+        let values = [];
+        for (let x = 0; x < 6; x++) {
+          let random = Math.floor(Math.random() * newArray.length - 1 + 1);
+          values.push(newArray[random]);
+          newArray.splice(random, 1);
+        }
+
+        let verify = true;
+        values.sort();
+        for (let x = 0; x < totalGames.length; x++) {
+          if (totalGames[x] === values) {
+            verify = false;
+            break;
+          }
+        }
+
+        if (verify) {
+          totalGames.push(values);
+        }
+      }
+      var fields = "";
+      for (let x = 0; x < totalGames.length; x++) {
+        fields +=
+          "<tr><td>" +
+          x +
+          "</td><td>" +
+          arr +
+          "," +
+          totalGames[x] +
+          "</td></tr>";
+      }
+      document.getElementById("games").innerHTML = fields;
+    }
+
+    function removeItem(id) {
+      let valueToRemove = document.getElementById("i" + id).value;
+      document.getElementById("i" + id).remove();
+      document.getElementById("div" + id).remove();
+      for (let x = 0; x < arr.length; x++) {
+        if (valueToRemove == arr[x]) {
+          arr.splice(x, 1);
+          break;
+        }
+      }
+
+      if (arr.length === 8) {
+        document.getElementById("1").value = "";
+        document.getElementById("1").disable = false;
+        document.getElementById("generated").value = "";
+        document.getElementById("gerar").style.display = "none";
+        document.getElementById("add").style.display = "block";
+        document.getElementById("1").style.display = "block";
+        document.getElementById("generated").style.display = "none";
+      }
+    }
+
     function add(e) {
       let valor = document.getElementById("1").value;
       if (valor < 0 || valor > 25) {
@@ -37,6 +116,14 @@
         document.getElementById("1").value = "";
         return false;
       }
+
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == valor) {
+          alert("Este número já foi adicionado");
+          return false;
+        }
+      }
+
       if (valor) {
         let el = document.getElementById("row");
         let div = document.createElement("div");
@@ -47,11 +134,12 @@
         item.value = valor;
         item.ondblclick = () => removeItem();
         item.contentEditable = false;
+
         if (arr.length === 9) {
           document.getElementById("1").value = "";
           document.getElementById("1").disable = true;
           document.getElementById("gerar").style.display = "block";
-          document.getElementById("add").style.display = "hidden";
+          document.getElementById("add").style.display = "none";
           return false;
         } else {
           arr.push(valor);
@@ -63,20 +151,13 @@
         alert("Preencha o campo com numero");
       }
     }
-    function removeItem(el) {
-      console.log(arr);
-    }
-
-    function gerar() {
-      console.log(arr);
-    }
   </script>
   <body>
     <div class="container">
       <div class="md-12 xs-12 sm-12">
         <h2>GENERATE NUMBERS LOTO</h2>
       </div>
-      <div class="row col-md-8" id="row">
+      <div class="row col-md-12" id="row">
         <div class="form-group col-md-2" id="items">
           <input
             type="number"
@@ -101,6 +182,16 @@
         >
           GERAR
         </button>
+      </div>
+      <br />
+      <br />
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <th>JOGOS POSSIVEIS</th>
+          </thead>
+          <tbody id="games"></tbody>
+        </table>
       </div>
     </div>
   </body>
