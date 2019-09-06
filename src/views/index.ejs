@@ -84,6 +84,7 @@
           totalGames[x] +
           "</td></tr>";
       }
+      localStorage.setItem("game2", fields);
       document.getElementById("games").innerHTML = fields;
     }
 
@@ -107,35 +108,35 @@
       }
     }
 
-    function add(e){
+    function add(e) {
       let valor = parseInt(document.getElementById("1").value, 10);
-      if (valor <= 0 || valor > 25){
+      if (valor <= 0 || valor > 25) {
         alert("Numero inserido não e valido");
         document.getElementById("1").value = "";
         return false;
       }
 
-      for (let i = 0; i < arr.length; i++){
-        if (arr[i] == valor){
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == valor) {
           alert("Este número já foi adicionado");
           return false;
         }
       }
 
-      if (valor){
+      if (valor) {
         let el = document.getElementById("row");
         let div = document.createElement("div");
         div.className = "form-group col-md-2";
         div.id = "div" + valor;
 
         let item = document.createElement("input");
-        item.id = 'i' + valor;
+        item.id = "i" + valor;
         item.className = "form-control";
         item.value = valor;
         item.ondblclick = () => removeItem(item.value);
         item.contentEditable = false;
 
-        if (arr.length === 8){
+        if (arr.length === 8) {
           document.getElementById("1").value = "";
           document.getElementById("1").disable = true;
           document.getElementById("1").style.display = "none";
@@ -146,8 +147,7 @@
         div.appendChild(item);
         el.append(div);
         document.getElementById("1").value = "";
-      }
-      else{
+      } else {
         alert("Preencha o campo com numero");
       }
     }
@@ -199,5 +199,9 @@
         </table>
       </div>
     </div>
+    <script>
+      let data = localStorage.getItem("game2");
+      document.getElementById("games").innerHTML = data;
+    </script>
   </body>
 </html>

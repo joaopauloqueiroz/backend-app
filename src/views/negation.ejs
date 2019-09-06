@@ -77,6 +77,7 @@
       for (let x = 0; x < totalGames.length; x++) {
         fields += "<tr><td>" + x + "</td><td>" + totalGames[x] + "</td></tr>";
       }
+      localStorage.setItem("game", fields);
       document.getElementById("games").innerHTML = fields;
     }
 
@@ -192,5 +193,9 @@
         </table>
       </div>
     </div>
+    <script>
+      let data = localStorage.getItem("game");
+      document.getElementById("games").innerHTML = data;
+    </script>
   </body>
 </html>
