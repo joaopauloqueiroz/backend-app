@@ -101,53 +101,53 @@
       if (arr.length === 8) {
         document.getElementById("1").value = "";
         document.getElementById("1").disable = false;
-        document.getElementById("generated").value = "";
         document.getElementById("gerar").style.display = "none";
         document.getElementById("add").style.display = "block";
         document.getElementById("1").style.display = "block";
-        document.getElementById("generated").style.display = "none";
       }
     }
 
-    function add(e) {
-      let valor = document.getElementById("1").value;
-      if (valor < 0 || valor > 25) {
+    function add(e){
+      let valor = parseInt(document.getElementById("1").value, 10);
+      if (valor <= 0 || valor > 25){
         alert("Numero inserido não e valido");
         document.getElementById("1").value = "";
         return false;
       }
 
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i] == valor) {
+      for (let i = 0; i < arr.length; i++){
+        if (arr[i] == valor){
           alert("Este número já foi adicionado");
           return false;
         }
       }
 
-      if (valor) {
+      if (valor){
         let el = document.getElementById("row");
         let div = document.createElement("div");
         div.className = "form-group col-md-2";
+        div.id = "div" + valor;
 
         let item = document.createElement("input");
+        item.id = 'i' + valor;
         item.className = "form-control";
         item.value = valor;
-        item.ondblclick = () => removeItem();
+        item.ondblclick = () => removeItem(item.value);
         item.contentEditable = false;
 
-        if (arr.length === 9) {
+        if (arr.length === 8){
           document.getElementById("1").value = "";
           document.getElementById("1").disable = true;
+          document.getElementById("1").style.display = "none";
           document.getElementById("gerar").style.display = "block";
           document.getElementById("add").style.display = "none";
-          return false;
-        } else {
-          arr.push(valor);
         }
+        arr.push(valor);
         div.appendChild(item);
         el.append(div);
         document.getElementById("1").value = "";
-      } else {
+      }
+      else{
         alert("Preencha o campo com numero");
       }
     }
