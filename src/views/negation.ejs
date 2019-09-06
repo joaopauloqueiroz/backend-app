@@ -54,7 +54,7 @@
       while (totalGames.length < 25) {
         let newArray = array.slice();
         let values = [];
-        for (let x = 0; x < 6; x++) {
+        for (let x = 0; x < 15; x++) {
           let random = Math.floor(Math.random() * newArray.length - 1 + 1);
           values.push(newArray[random]);
           newArray.splice(random, 1);
@@ -75,14 +75,7 @@
       }
       var fields = "";
       for (let x = 0; x < totalGames.length; x++) {
-        fields +=
-          "<tr><td>" +
-          x +
-          "</td><td>" +
-          arr +
-          "," +
-          totalGames[x] +
-          "</td></tr>";
+        fields += "<tr><td>" + x + "</td><td>" + totalGames[x] + "</td></tr>";
       }
       document.getElementById("games").innerHTML = fields;
     }
@@ -98,7 +91,7 @@
         }
       }
 
-      if (arr.length === 8) {
+      if (arr.length === 4) {
         document.getElementById("1").value = "";
         document.getElementById("1").disable = false;
         document.getElementById("generated").value = "";
@@ -135,7 +128,7 @@
         item.ondblclick = () => removeItem();
         item.contentEditable = false;
 
-        if (arr.length === 9) {
+        if (arr.length === 4) {
           document.getElementById("1").value = "";
           document.getElementById("1").disable = true;
           document.getElementById("gerar").style.display = "block";
@@ -154,11 +147,11 @@
   </script>
   <body>
     <div class="container">
-      <div class="md-12 xs-12 sm-12">
-        <h2>GENERATE NUMBERS LOTO - ACERTE NOVE NUMEROS</h2>
+      <div class="col-md-12 col-xs-12 col-sm-12">
+        <h2>GERADOR DE NUMEROS LOTO FACIL - ERRE CINCO NUMEROS</h2>
       </div>
       <div class="col-md-12">
-        <a class="btn btn-success" href="/negation">NEGAÇÃO</a>
+        <a class="btn btn-success" href="/">ACERTE 9</a>
         <br />
         <br />
       </div>

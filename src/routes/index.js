@@ -6,6 +6,7 @@ const UserController = require("../controller/UserController");
 const ViewsController = require("../controller/ViewsController");
 
 routes.get("/", ViewsController.index);
+routes.get("/negation", ViewsController.edit);
 
 routes.post("/users/create", UserController.store);
 routes.post("/users/login", UserController.login);
