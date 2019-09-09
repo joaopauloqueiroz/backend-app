@@ -10,7 +10,7 @@
       <p align="center" >João Paulo Queiroz</p>
    </div>
    
-   <div align="center">
+   <div align="center" style="display: flex;">
       <img src="https://avatars0.githubusercontent.com/u/13333634?s=400&v=4" alt="..." width="200px" height="200px" align="center" />
    
    <p align="center">Lucas Borges</p>
