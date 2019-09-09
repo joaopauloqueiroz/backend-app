@@ -7,11 +7,17 @@
    <div align="">
       <img src="https://avatars1.githubusercontent.com/u/20147907?s=400&u=8e9a1fc254784b7eb43d8ee39707bc2ad7c70996&v=4" alt="..." width="200px" height="200px" align="center" />
       <p align="center" >João Paulo Queiroz</p>
-      <img src="https://avatars0.githubusercontent.com/u/13333634?s=400&v=4" alt="..." width="200px" height="200px" align="center" />
+      <img src="" alt="..." width="200px" height="200px" align="center" />
    
    <p align="center">Lucas Borges</p>
    
    </div>
+   
+   
+| [<img src="https://avatars1.githubusercontent.com/u/20147907?s=400&u=8e9a1fc254784b7eb43d8ee39707bc2ad7c70996&v=4" width="75px;"/>](https://github.com/joaopauloqueiroz) | [<img src="https://avatars0.githubusercontent.com/u/13333634?s=400&v=4" width="75px;"/>](https://github.com/luborges) |
+| :-----------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+|                                       [Diego Fernandes](https://github.com/diego3g)                                        |                                      [Guilherme Pellizzetti](https://github.com/pellizzetti)                                       |
+   
    
 ## Usage
 <p>
